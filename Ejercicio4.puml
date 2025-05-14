@@ -5,6 +5,8 @@ class Agente {
   - arma: String
   + disparar(): void
   + usarHabilidad(): void
+  + recargar(): void
+  + comunicar(): void
 }
 
 class AgenteDefensivo {
@@ -17,15 +19,30 @@ class AgenteOfensivo {
   + lanzarGranada(): void
 }
 
+class AgenteSoporte {
+  - habilidadSoporte: String
+  + otorgarEscudo(): void
+}
+
 class Habilidad {
   - nombreHabilidad: String
   - costo: int
   + activar(): void
 }
 
+class Equipo {
+  - nombre: String
+  + coordinarAtaque(): void
+}
+
 Agente <|-- AgenteDefensivo : hereda
 Agente <|-- AgenteOfensivo : hereda
+Agente <|-- AgenteSoporte : hereda
+
 AgenteOfensivo "1" *-- "0..*" Habilidad : usa
 AgenteDefensivo "1" *-- "0..*" Habilidad : usa
+AgenteSoporte    "1" *-- "0..*" Habilidad : usa
+
+Equipo "1" *-- "1..5" Agente : contiene >
 
 @enduml
