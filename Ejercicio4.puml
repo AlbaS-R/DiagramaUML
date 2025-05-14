@@ -1,0 +1,31 @@
+@startuml
+class Agente {
+  - nombre: String
+  - salud: int
+  - arma: String
+  + disparar(): void
+  + usarHabilidad(): void
+}
+
+class AgenteDefensivo {
+  - habilidadDefensiva: String
+  + curar(): void
+}
+
+class AgenteOfensivo {
+  - habilidadOfensiva: String
+  + lanzarGranada(): void
+}
+
+class Habilidad {
+  - nombreHabilidad: String
+  - costo: int
+  + activar(): void
+}
+
+Agente <|-- AgenteDefensivo : hereda
+Agente <|-- AgenteOfensivo : hereda
+AgenteOfensivo "1" *-- "0..*" Habilidad : usa
+AgenteDefensivo "1" *-- "0..*" Habilidad : usa
+
+@enduml
